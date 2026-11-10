@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +8,61 @@
   <meta name="description" content="イベント簡易説明">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <header>
-    <h1>イベント名</h1>
-    <p>2026.12.12</p>
-
-    <nav class="nav-tabs">
-      <ul>
-        <li><a href="#about">イベントについて</a></li>
-        <li><a href="#schedule">スケジュール</a></li>
-        <li><a href="#registration">参加登録</a></li>
-      </ul>
-    </nav>
-
+    <h1>コスプレ・ランダムダンスイベント（名称不明）</h1>
+    <p>2026.12.13</p>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>イベントについて</h2>
-      <p>イベントの詳細な説明をここに記載します。</p>
-    </section>
-    <section id="schedule">
-      <h2>スケジュール</h2>
-      <ul>
-        <li>10:00 - にぇ</li>
-        <li>11:00 - にぇ…</li>
-        <li>12:00 - にぇ？</li>
-        <li>13:00 - にぇ！</li>
-        <li>15:00 - にぇぇぇぇ！！！
-        </li>
-      </ul>
-    </section>
-    <section id="registration">
-      <h2>参加登録</h2>
-      <p>参加登録はこちらから行えます。</p>
-      <a href="registration.html">登録ページへ</a>
-    </section>
-  </main>
+  <div class="layout-container">
+    <aside class="sidebar">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="#about">イベントについて</a></li>
+          <li><a href="#place">場所</a></li>
+          <li><a href="#schedule">スケジュール</a></li>
+          <li><a href="#registration">参加登録</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="about">
+        <h2>イベントについて</h2>
+        <p>イベントの詳細な説明をここに記載します。</p>
+      </section>
+
+      <section id="place">
+        <h2>場所</h2>
+        <p>伊勢崎駅前南口広場</p>
+        <div class="map-container">
+          <iframe
+            src="https://maps.google.com/maps?q=%E4%BC%8A%E5%8B%A2%E5%B4%8E%E9%A7%85%E5%8D%97%E5%8F%A3%E5%BA%83%E5%A0%B4&amp;output=embed"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </section>
+
+      <section id="schedule">
+        <h2>スケジュール</h2>
+        <ul>
+          <li>15:00 - 更衣室利用開始</li>
+          <li>16:00 - イベント開始</li>
+        </ul>
+      </section>
+
+      <section id="registration">
+        <h2>参加登録</h2>
+        <p>参加登録はこちらから行えます。</p>
+        <a href="registration.html">登録ページへ</a>
+      </section>
+    </main>
+  </div>
   <footer>
     <p>&copy; 2026 イベント名. All rights reserved.</p>
   </footer>
 </body>
+
 </html>
