@@ -68,6 +68,19 @@
   <footer>
     <p>&copy; 2026 イベント名. All rights reserved.</p>
   </footer>
+
+  <script>
+    const header = document.querySelector('header');
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 初期ロード時の判定
+  </script>
 </body>
 
 </html>
