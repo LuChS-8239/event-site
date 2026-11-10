@@ -33,7 +33,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* 固定ヘッダー分だけアンカースクロール位置をオフセット */
+  scroll-padding-top: 70px; /* 固定ヘッダー縮小時の高さ + 余白 */
 }
 
 body {
@@ -42,13 +42,14 @@ body {
   background-color: var(--bg-body);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  padding-top: 130px; /* 最上部ヘッダーの高さ分の余白（コンテンツ押し出し防止） */
 }
 
 /* ==========================================================================
    ヘッダー（スクロール連動・画面上部固定）
    ========================================================================== */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -56,16 +57,16 @@ header {
   background: linear-gradient(135deg, #1e3a8a, #2563eb);
   color: #ffffff;
   text-align: center;
-  padding: 48px 20px;
+  padding: 40px 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: padding 0.3s ease, box-shadow 0.3s ease;
+  transition: padding 0.25s ease, box-shadow 0.25s ease;
 }
 
 header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   letter-spacing: 0.05em;
   margin: 0;
-  transition: font-size 0.3s ease;
+  transition: font-size 0.25s ease;
 }
 
 header p {
@@ -77,17 +78,17 @@ header p {
   font-size: 1rem;
   letter-spacing: 0.08em;
   margin-top: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 /* スクロール時の縮小スタイル */
 header.scrolled {
-  padding: 14px 20px;
+  padding: 12px 20px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 header.scrolled h1 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
 }
 
 header.scrolled p {
@@ -113,7 +114,7 @@ header.scrolled p {
   width: 220px;
   flex-shrink: 0;
   position: sticky;
-  top: 80px; /* 固定ヘッダー分の余白 */
+  top: 70px; /* 固定ヘッダー縮小時の高さ + 余白 */
 }
 
 .side-nav ul {
@@ -446,12 +447,16 @@ footer {
 }
 
 @media (max-width: 640px) {
+  body {
+    padding-top: 100px;
+  }
+
   header {
-    padding: 30px 16px;
+    padding: 24px 16px;
   }
 
   header h1 {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
   }
 
   header.scrolled {
