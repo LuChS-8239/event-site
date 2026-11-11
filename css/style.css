@@ -226,13 +226,16 @@ footer {
 
 /* --- レスポンシブ（スマホ・タブレット） --- */
 @media (max-width: 768px) {
-  body { padding-top: 120px; }
-  header { padding: 18px 16px; }
-  header h1 { font-size: 1.25rem; }
+  body { padding-top: 165px; } /* 固定ヘッダーの高さ分の余白を十分に確保 */
+  header { padding: 16px 14px; }
+  header h1 { font-size: 1.15rem; line-height: 1.3; }
+  .title-highlight { font-size: 1.6rem; } /* スマホ画面に合わせたサイズに調整 */
+
   header.scrolled { padding: 10px 14px; }
   header.scrolled h1 { font-size: 1rem; }
+  header.scrolled .title-highlight { font-size: 1.15rem; }
 
-  .layout-container { flex-direction: column; margin: 20px auto; gap: 20px; }
+  .layout-container { flex-direction: column; margin: 16px auto; gap: 20px; }
   .sidebar { width: 100%; position: static; }
   .side-nav ul { flex-direction: row; flex-wrap: wrap; gap: 6px; }
   .side-nav li { flex: 1 1 calc(50% - 4px); min-width: 120px; }
