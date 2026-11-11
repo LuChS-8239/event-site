@@ -21,10 +21,10 @@ body {
   color: var(--text);
   background: var(--bg);
   line-height: 1.75;
-  padding-top: 150px;
+  padding-top: 95px;
 }
 
-/* --- 固定ヘッダー --- */
+/* --- 固定ヘッダー（シンプル固定） --- */
 header {
   position: fixed;
   top: 0; left: 0; width: 100%;
@@ -32,32 +32,24 @@ header {
   background: linear-gradient(135deg, var(--navy), #202e5b);
   color: #fff;
   text-align: center;
-  padding: 24px 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: padding 0.25s ease;
+  padding: 14px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
-.header-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.badge-accent {
-  background: var(--yellow);
-  color: #0f172a;
-  font-size: 0.85rem;
+.header-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+header h1 {
+  font-size: 1.25rem;
   font-weight: 800;
-  padding: 4px 14px;
-  border-radius: 9999px;
+  line-height: 1.3;
 }
-header h1 { font-size: 1.75rem; font-weight: 800; transition: font-size 0.25s ease; }
 .title-highlight {
-  color: var(--yellow); 
-  font-size: 3rem;
-  transition: font-size 0.25s ease;
+  color: var(--yellow);
+  font-size: 1.35rem;
 }
-
-/* ヘッダースクロール縮小 */
-header.scrolled { padding: 10px 20px; }
-header.scrolled .title-highlight { font-size: 1.25rem; }
-header.scrolled .header-inner { flex-direction: row; justify-content: center; gap: 12px; }
-header.scrolled h1 { font-size: 1.1rem; }
-header.scrolled .badge-accent { font-size: 0.75rem; padding: 2px 8px; }
 
 /* --- レイアウト（2カラム） --- */
 .layout-container {
@@ -226,16 +218,12 @@ footer {
 
 /* --- レスポンシブ（スマホ・タブレット） --- */
 @media (max-width: 768px) {
-  body { padding-top: 165px; } /* 固定ヘッダーの高さ分の余白を十分に確保 */
-  header { padding: 16px 14px; }
-  header h1 { font-size: 1.15rem; line-height: 1.3; }
-  .title-highlight { font-size: 1.6rem; } /* スマホ画面に合わせたサイズに調整 */
+  body { padding-top: 85px; }
+  header { padding: 12px 14px; }
+  header h1 { font-size: 1.05rem; line-height: 1.3; }
+  .title-highlight { font-size: 1.15rem; }
 
-  header.scrolled { padding: 10px 14px; }
-  header.scrolled h1 { font-size: 1rem; }
-  header.scrolled .title-highlight { font-size: 1.15rem; }
-
-  .layout-container { flex-direction: column; margin: 16px auto; gap: 20px; }
+  .layout-container { flex-direction: column; margin: 12px auto; gap: 16px; }
   .sidebar { width: 100%; position: static; }
   .side-nav ul { flex-direction: row; flex-wrap: wrap; gap: 6px; }
   .side-nav li { flex: 1 1 calc(50% - 4px); min-width: 120px; }
