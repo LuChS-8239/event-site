@@ -1,105 +1,65 @@
 @charset "UTF-8";
 
-/* ==========================================================================
-   CSS変数（カラー・サイズ定義）
-   イベントのテーマカラーやフォントサイズをここでまとめて変更できます
-   ========================================================================== */
+/* --- カラー & 基本変数 --- */
 :root {
-  --primary-color: #2563eb;       /* メインカラー（青系） */
-  --primary-hover: #1d4ed8;       /* ボタンなどのホバー色 */
-  --accent-color: #f59e0b;        /* アクセントカラー（オレンジ系） */
-  --text-main: #1e293b;           /* 主要テキスト色 */
-  --text-muted: #64748b;          /* 補足・薄いテキスト色 */
-  --bg-body: #f8fafc;             /* ページ全体の背景色 */
-  --bg-card: #ffffff;             /* コンテンツカードの背景色 */
-  --border-color: #e2e8f0;        /* 境界線の色 */
-  
-  --font-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  --max-width: 800px;             /* コンテンツの最大横幅 */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --navy: #131c38;
+  --pink: #f43f5e;
+  --pink-hover: #e11d48;
+  --yellow: #fbbf24;
+  --text: #1e293b;
+  --muted: #64748b;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
 }
 
-/* ==========================================================================
-   リセット & ベーススタイル
-   ========================================================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 70px; /* 固定ヘッダー縮小時の高さ + 余白 */
-}
-
+/* --- ベースリセット --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body {
-  font-family: var(--font-base);
-  color: var(--text-main);
-  background-color: var(--bg-body);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  padding-top: 130px; /* 最上部ヘッダーの高さ分の余白（コンテンツ押し出し防止） */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.75;
+  padding-top: 150px;
 }
 
-/* ==========================================================================
-   ヘッダー（スクロール連動・画面上部固定）
-   ========================================================================== */
+/* --- 固定ヘッダー --- */
 header {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 0; left: 0; width: 100%;
   z-index: 1000;
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--navy), #202e5b);
+  color: #fff;
   text-align: center;
-  padding: 40px 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: padding 0.25s ease, box-shadow 0.25s ease;
+  padding: 24px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: padding 0.25s ease;
 }
-
-header h1 {
-  font-size: 1.8rem;
-  letter-spacing: 0.05em;
-  margin: 0;
+.header-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.badge-accent {
+  background: var(--yellow);
+  color: #0f172a;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 9999px;
+}
+header h1 { font-size: 1.75rem; font-weight: 800; transition: font-size 0.25s ease; }
+.title-highlight {
+  color: var(--yellow); 
+  font-size: 3rem;
   transition: font-size 0.25s ease;
 }
 
-header p {
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 4px 14px;
-  border-radius: 9999px;
-  font-weight: bold;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  margin-top: 8px;
-  transition: all 0.25s ease;
-}
+/* ヘッダースクロール縮小 */
+header.scrolled { padding: 10px 20px; }
+header.scrolled .title-highlight { font-size: 1.25rem; }
+header.scrolled .header-inner { flex-direction: row; justify-content: center; gap: 12px; }
+header.scrolled h1 { font-size: 1.1rem; }
+header.scrolled .badge-accent { font-size: 0.75rem; padding: 2px 8px; }
 
-/* スクロール時の縮小スタイル */
-header.scrolled {
-  padding: 12px 20px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-}
-
-header.scrolled h1 {
-  font-size: 1.15rem;
-}
-
-header.scrolled p {
-  font-size: 0.85rem;
-  padding: 2px 10px;
-  margin-top: 4px;
-}
-
-/* ==========================================================================
-   2カラムレイアウト（左サイドバー & 右メインコンテンツ）
-   ========================================================================== */
+/* --- レイアウト（2カラム） --- */
 .layout-container {
   max-width: 1040px;
   margin: 40px auto;
@@ -108,216 +68,179 @@ header.scrolled p {
   gap: 32px;
   align-items: flex-start;
 }
-
-/* 左側サイドバー（スクロール追従ナビ） */
-.sidebar {
-  width: 220px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 70px; /* 固定ヘッダー縮小時の高さ + 余白 */
-}
-
-.side-nav ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+.sidebar { width: 220px; flex-shrink: 0; position: sticky; top: 85px; }
+.side-nav ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .side-nav a {
-  display: flex;
-  align-items: center;
-  padding: 12px 18px;
-  color: var(--text-main);
+  display: block;
+  padding: 12px 16px;
+  color: var(--text);
   text-decoration: none;
   font-weight: bold;
   font-size: 0.95rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   transition: all 0.2s ease;
 }
+.side-nav a:hover { background: var(--navy); color: #fff; border-color: var(--navy); transform: translateX(4px); }
+.side-nav a.nav-cta { background: #fff1f2; border-color: #fecdd3; color: var(--pink-hover); }
+.side-nav a.nav-cta:hover { background: var(--pink); color: #fff; }
+.side-nav a.nav-back { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.side-nav a.nav-back:hover { background: #2563eb; border-color: #2563eb; color: #fff; }
 
-.side-nav a:hover {
-  background-color: var(--primary-color);
-  color: #ffffff;
-  border-color: var(--primary-color);
-  transform: translateX(4px);
-}
-
-/* メインコンテンツエリア（右側） */
-main {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* セクションカード共通 */
+/* --- メインコンテンツ --- */
+main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
 section {
-  background-color: var(--bg-card);
+  background: var(--card);
   padding: 32px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-
 section h2 {
-  font-size: 1.4rem;
-  color: var(--text-main);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--primary-color);
-  display: inline-block;
-}
-
-/* ==========================================================================
-   スケジュールセクション
-   ========================================================================== */
-#schedule ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-#schedule li {
-  padding: 12px 16px;
-  background-color: var(--bg-body);
-  border-left: 4px solid var(--primary-color);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-size: 0.95rem;
-}
-
-/* ==========================================================================
-   場所・Googleマップ
-   ========================================================================== */
-.map-container {
-  width: 100%;
-  margin-top: 16px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
-}
-
-.map-container iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  min-height: 300px;
-  display: block;
-}
-
-/* ==========================================================================
-   参加登録セクション (CTA)
-   ========================================================================== */
-#registration {
-  text-align: center;
-  background: linear-gradient(to bottom, #ffffff, #f1f5f9);
-}
-
-#registration p {
+  font-size: 1.35rem;
+  color: var(--navy);
   margin-bottom: 20px;
-  color: var(--text-muted);
+  padding-bottom: 6px;
+  border-bottom: 3px solid var(--pink);
+  display: inline-block;
 }
 
-#registration a {
+/* 日時・場所 */
+.info-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.info-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-left: 4px solid var(--navy);
+  border-radius: 6px;
+}
+.info-label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  background: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Googleマップ */
+.map-container { width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.map-container iframe { width: 100%; aspect-ratio: 16 / 9; min-height: 280px; display: block; }
+
+/* 参加料カード */
+.fee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 14px; }
+.fee-card { background: #fff5f6; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 22px 20px; text-align: center; }
+.fee-title { font-weight: bold; color: var(--navy); font-size: 1.1rem; }
+.fee-price { font-size: 2.2rem; font-weight: 800; color: var(--pink); margin: 6px 0; }
+.fee-price span { font-size: 0.95rem; font-weight: normal; margin-left: 2px; }
+.fee-desc { font-size: 0.85rem; color: var(--muted); }
+
+/* 駐車場（小さめの別枠） */
+.fee-parking {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 18px;
+}
+.parking-info { display: flex; align-items: baseline; gap: 10px; }
+.parking-label { font-weight: bold; font-size: 0.9rem; color: var(--navy); }
+.parking-desc { font-size: 0.8rem; color: var(--muted); }
+.parking-price { font-weight: 800; font-size: 1.25rem; color: var(--text); }
+.parking-price span { font-size: 0.85rem; font-weight: normal; margin-left: 2px; }
+
+/* スケジュール */
+.schedule-timeline { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.schedule-timeline li {
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-left: 4px solid var(--navy);
+  border-radius: 0 6px 6px 0;
+}
+.schedule-timeline .time { font-weight: 800; color: var(--pink); min-width: 50px; }
+
+/* ルール告知 & 枠 */
+.notice-box { background: #fefce8; border-left: 5px solid var(--yellow); border-radius: 6px; padding: 16px 20px; }
+.notice-title { font-weight: bold; color: #854d0e; margin-bottom: 4px; }
+.notice-desc { font-size: 0.9rem; color: #713f12; }
+.rules-link-wrap { margin-top: 18px; }
+.btn-sub {
   display: inline-block;
-  background-color: var(--primary-color);
-  color: #ffffff;
+  padding: 10px 22px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  color: var(--navy);
   text-decoration: none;
   font-weight: bold;
-  padding: 14px 40px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.btn-sub:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.rule-placeholder {
+  color: var(--muted);
+  font-style: italic;
+  background: var(--bg);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+}
+
+/* 参加登録 (CTA) */
+#registration { text-align: center; background: linear-gradient(135deg, #fff, #fff5f6); border: 2px solid #fecdd3; }
+.btn-register {
+  display: inline-block;
+  margin-top: 16px;
+  background: var(--pink);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 14px 36px;
   border-radius: 9999px;
-  box-shadow: var(--shadow-md);
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
+  transition: all 0.2s ease;
 }
+.btn-register:hover { background: var(--pink-hover); transform: translateY(-2px); }
 
-#registration a:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.25);
-}
-
-/* ==========================================================================
-   フッター
-   ========================================================================== */
+/* フッター */
 footer {
   text-align: center;
-  padding: 30px 20px 40px;
-  color: var(--text-muted);
+  padding: 30px 20px;
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
+  margin-top: 60px;
 }
 
-/* ==========================================================================
-   レスポンシブ対応（タブレット・スマートフォン表示）
-   ========================================================================== */
+/* --- レスポンシブ（スマホ・タブレット） --- */
 @media (max-width: 768px) {
-  .layout-container {
-    flex-direction: column;
-    margin: 24px auto;
-    gap: 24px;
-  }
+  body { padding-top: 120px; }
+  header { padding: 18px 16px; }
+  header h1 { font-size: 1.25rem; }
+  header.scrolled { padding: 10px 14px; }
+  header.scrolled h1 { font-size: 1rem; }
 
-  .sidebar {
-    width: 100%;
-    position: static;
-  }
+  .layout-container { flex-direction: column; margin: 20px auto; gap: 20px; }
+  .sidebar { width: 100%; position: static; }
+  .side-nav ul { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .side-nav li { flex: 1 1 calc(50% - 4px); min-width: 120px; }
+  .side-nav a { text-align: center; padding: 10px 8px; font-size: 0.85rem; }
+  .side-nav a:hover { transform: none; }
 
-  .side-nav ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .side-nav li {
-    flex: 1 1 calc(50% - 4px);
-    min-width: 130px;
-  }
-
-  .side-nav a {
-    justify-content: center;
-    padding: 10px 12px;
-    font-size: 0.9rem;
-  }
-
-  .side-nav a:hover {
-    transform: none;
-  }
+  section { padding: 20px 16px; }
+  .fee-parking { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .info-item { flex-direction: column; gap: 4px; }
+  .btn-register { display: block; width: 100%; }
 }
-
-@media (max-width: 640px) {
-  body {
-    padding-top: 100px;
-  }
-
-  header {
-    padding: 24px 16px;
-  }
-
-  header h1 {
-    font-size: 1.2rem;
-  }
-
-  header.scrolled {
-    padding: 12px 14px;
-  }
-
-  header.scrolled h1 {
-    font-size: 1.05rem;
-  }
-
-  section {
-    padding: 24px 18px;
-  }
-
-  #registration a {
-    display: block;
-    width: 100%;
-    padding: 14px 20px;
-  }
-}
-
